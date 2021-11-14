@@ -17,11 +17,12 @@ export const getTrends = async (): Promise<TrendV1[]> => {
     const id = trendLocations[0].woeid;
 
     const trendMatch = await client.v1.trendsByPlace(id);
-    return trendMatch[0].trends
-        .filter((trend) => trend.tweet_volume)
-        .sort((a, b) => b.tweet_volume - a.tweet_volume);
+    return trendMatch[0].trends.sort((a, b) => b.tweet_volume - a.tweet_volume);
 };
 
+/**
+ * 30秒間に投稿されたツイートを取得
+ */
 export const getTweet = async (
     query: string,
     max_results = 10
@@ -36,7 +37,7 @@ export const getTweet = async (
 };
 
 /**
- * １分間に投稿されたツイートの個数を取得
+ * 30秒間に投稿されたツイートの個数を取得
  */
 export const getTweetCount = async (query: string): Promise<number> => {
     const now = new Date();
