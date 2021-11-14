@@ -10,7 +10,7 @@ export default async function handler(
 
     res.setHeader(
         "Cache-Control",
-        "s-maxage=86400, stale-while-revalidate=3600"
+        "s-maxage=3600, stale-while-revalidate=3600"
     );
     res.status(200).json(trends);
 }

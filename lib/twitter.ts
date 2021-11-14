@@ -13,7 +13,7 @@ const client = new TwitterApi(process.env.TWITTER_BEARER_TOKEN || "").readOnly;
 
 export const getTrends = async (): Promise<TrendV1[]> => {
     // 緯度経度を指定してトレンドを取得
-    const trendLocations = await client.v1.trendsClosest(36.110143, 140.101354);
+    const trendLocations = await client.v1.trendsClosest(35.68, 139.76);
     const id = trendLocations[0].woeid;
 
     const trendMatch = await client.v1.trendsByPlace(id);
