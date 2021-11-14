@@ -12,7 +12,5 @@ export default async function handler(
     }
 
     const tweets = await getTweetCount(q);
-
-    res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate");
     res.status(200).json(tweets);
 }
