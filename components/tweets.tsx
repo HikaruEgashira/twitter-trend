@@ -9,7 +9,15 @@ export const Tweets: React.FC<{ query: string | undefined }> = ({ query }) => {
         { refreshInterval: 60 * 1000 }
     );
 
-    return <>{count ? <div>{count}</div> : <div>ちょっとまってね</div>}</>;
+    return (
+        <>
+            {typeof count === "undefined" ? (
+                <div>ちょっとまってね</div>
+            ) : (
+                <div>{count}</div>
+            )}
+        </>
+    );
 };
 
 export const TweetsDetail: React.FC<{ query: string | undefined }> = ({
@@ -23,8 +31,11 @@ export const TweetsDetail: React.FC<{ query: string | undefined }> = ({
 
     return (
         <ul>
-            {tweets &&
-                tweets.map((tweet) => <li key={tweet.id}>{tweet.text}</li>)}
+            {typeof tweets === "undefined" ? (
+                <div>ちょっとまってね</div>
+            ) : (
+                tweets.map((tweet) => <li key={tweet.id}>{tweet.text}</li>)
+            )}
         </ul>
     );
 };
