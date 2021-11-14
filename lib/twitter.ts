@@ -1,5 +1,5 @@
 import { TwitterApi, TrendV1, TweetV2 } from "twitter-api-v2";
-import { formatISO, subSeconds } from "date-fns";
+import { formatISO, subMinutes } from "date-fns";
 
 // セキュリティー対策
 if (typeof window !== "undefined") {
@@ -21,33 +21,29 @@ export const getTrends = async (): Promise<TrendV1[]> => {
 };
 
 /**
- * 30秒間に投稿されたツイートを取得
+ * 過去1分間に投稿されたツイートを取得
+ * 直近30秒は仕様上含まれない
  */
 export const getTweet = async (
     query: string,
     max_results = 10
 ): Promise<TweetV2[]> => {
     const now = new Date();
-    const tweets = await client.v2.search(query, {
+    const res = await client.v2.search(query, {
         max_results,
-        end_time: formatISO(subSeconds(now, 30)), // 制約上、30秒以内のツイートは取得できない
-        start_time: formatISO(subSeconds(now, 60)),
+        start_time: formatISO(subMinutes(now, 1)),
     });
-    return tweets.data.data;
+    return res.data.data;
 };
 
 /**
- * 30秒間に投稿されたツイートの個数を取得
+ * 過去1分間に投稿されたツイートの個数を取得
+ * 直近30秒は仕様上含まれない
  */
 export const getTweetCount = async (query: string): Promise<number> => {
     const now = new Date();
     const res = await client.v2.tweetCountRecent(query, {
-        end_time: formatISO(subSeconds(now, 30)), // 制約上、30秒以内のツイートは取得できない
-        start_time: formatISO(subSeconds(now, 60)),
+        start_time: formatISO(subMinutes(now, 1)),
     });
-    if (res.errors) {
-        console.error(JSON.stringify(res.errors));
-        return 0;
-    }
     return res.data[0].tweet_count;
 };
