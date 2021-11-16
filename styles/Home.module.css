@@ -29,3 +29,8 @@
     font-size: 4rem;
     text-align: center;
 }
+
+.flex {
+    display: flex;
+    gap: 0.2rem;
+}

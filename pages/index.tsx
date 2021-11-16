@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "styles/Home.module.css";
-import { Tweets } from "components/tweets";
+import { TweetCount } from "components/tweets";
 import useSWR from "swr/immutable";
 import { TrendV1 } from "twitter-api-v2";
 
@@ -32,7 +32,14 @@ const Home: NextPage = () => {
                                     {trend.name}
                                 </a>
                             </h3>
-                            <Tweets key={trend.url} query={trend.name} />
+                            <p className={styles.flex}>
+                                {trend.tweet_volume}
+                                <div>+</div>
+                                <TweetCount
+                                    key={trend.url}
+                                    query={trend.name}
+                                />
+                            </p>
                         </>
                     ))}
                 </div>
