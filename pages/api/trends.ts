@@ -8,9 +8,9 @@ export default async function handler(
 ) {
     const trends = await getTrends();
 
-    res.setHeader(
-        "Cache-Control",
-        "s-maxage=3600, stale-while-revalidate=3600"
-    );
+    // res.setHeader(
+    //     "Cache-Control",
+    //     "s-maxage=3600, stale-while-revalidate=3600"
+    // );
     res.status(200).json(trends);
 }
