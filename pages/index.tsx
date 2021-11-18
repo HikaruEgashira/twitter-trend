@@ -7,7 +7,6 @@ import { TrendV1 } from "twitter-api-v2";
 
 const Home: NextPage = () => {
     const { data: trends } = useSWR<TrendV1[]>("/api/trends");
-
     return (
         <div className={styles.container}>
             <Head>

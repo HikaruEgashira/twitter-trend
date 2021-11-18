@@ -1,10 +1,10 @@
+/**
+ * サーバーのみで利用できる
+ * できない場所で利用すると　Can't resolve 'fs' というエラーが出る
+ */
 import { TwitterApi, TrendV1, TweetV2 } from "twitter-api-v2";
 import { formatISO, subMinutes } from "date-fns";
 
-// セキュリティー対策
-if (typeof window !== "undefined") {
-    throw new Error("[エラー] Twitter APIはフロントエンドで利用できません");
-}
 if (typeof process.env.TWITTER_BEARER_TOKEN === undefined) {
     throw new Error("[エラー] Twitter APIのキーが設定されていません");
 }
