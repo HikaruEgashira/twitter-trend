@@ -6,7 +6,9 @@ import useSWR from "swr/immutable";
 import { TrendV1 } from "twitter-api-v2";
 
 const Home: NextPage = () => {
-    const { data: trends } = useSWR<TrendV1[]>("/api/trends");
+    const { data: trends } = useSWR<TrendV1[]>("/api/trends", {
+        refreshInterval: 1000 * 60,
+    });
     return (
         <div className={styles.container}>
             <Head>

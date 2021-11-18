@@ -6,8 +6,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <SWRConfig
             value={{
-                // 1秒ごとに更新が走る
-                refreshInterval: 1000,
+                // 5秒ごとに更新が走る
+                refreshInterval: 5000,
                 fetcher: (url: string) => fetch(url).then((r) => r.json()),
             }}
         >
