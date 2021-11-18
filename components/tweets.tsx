@@ -6,9 +6,7 @@ export const TweetCount: React.FC<{ query: string | undefined }> = ({
     query,
 }) => {
     const { data: count } = useSWR<number>(
-        query ? `/api/count?q=${encodeURIComponent(query)} -is:retweet` : null,
-        // 60秒ごとに個数を取得
-        { refreshInterval: 60 * 1000 }
+        query ? `/api/count?q=${encodeURIComponent(query)} -is:retweet` : null
     );
 
     return (

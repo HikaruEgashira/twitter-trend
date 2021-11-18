@@ -7,6 +7,6 @@ export default async function handler(
 ) {
     const trends = await getTrends();
 
-    res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=300");
+    res.setHeader("Cache-Control", "public, s-maxage=300");
     res.status(200).json(trends);
 }

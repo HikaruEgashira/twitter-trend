@@ -11,5 +11,7 @@ export default async function handler(
     }
 
     const tweets = await getTweet(q);
+
+    res.setHeader("Cache-Control", "public, s-maxage=30");
     res.status(200).json(tweets);
 }
