@@ -1,10 +1,13 @@
+import { cors, runMiddleware } from "lib/cors";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getTweet } from "../../lib/twitter";
+import { getTweet } from "lib/twitter";
 
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
+    await runMiddleware(req, res, cors);
+
     const { q } = req.query;
     if (typeof q !== "string") {
         return res.status(400).json({ error: "Missing query" });
