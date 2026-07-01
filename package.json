@@ -18,7 +18,7 @@
     },
     "devDependencies": {
         "@types/cors": "^2.8.19",
-        "@types/node": "25.9.3",
+        "@types/node": "26.0.1",
         "@types/react": "19.2.17",
         "eslint": "7",
         "eslint-config-next": "15.5.19",
